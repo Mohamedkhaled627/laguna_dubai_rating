@@ -70,7 +70,16 @@ export default async function HomePage() {
             />
           ) : (
             <div className="flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-lagoon to-laguna-deep text-white">
-              <span className="font-display text-4xl">Λ</span>
+              <span className="font-display text-7xl text-white/90">Λ</span>
+              <svg
+                className="absolute bottom-0 left-0 h-16 w-full text-sand-50"
+                viewBox="0 0 1440 64"
+                fill="currentColor"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path d="M0 32c120 16 240 24 360 16s240-24 360-16 240 24 360 16 240-24 360-8-240-16-360-8-240 24-360 16-240-24-360-16Z" />
+              </svg>
             </div>
           )}
         </div>

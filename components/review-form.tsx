@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { RatingPicker } from "@/components/rating-picker";
 
 export function ReviewForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "done">(
@@ -19,6 +20,7 @@ export function ReviewForm() {
       reviewerName: String(formData.get("reviewerName") ?? "").trim(),
       rating: Number(formData.get("rating")),
       comment: String(formData.get("comment") ?? "").trim(),
+      company: String(formData.get("company") ?? "").trim(),
     };
 
     const res = await fetch("/api/reviews", {
@@ -62,6 +64,17 @@ export function ReviewForm() {
         </p>
       )}
 
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="company">متسبش الحقل ده فارغ</label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div>
         <label
           htmlFor="reviewerName"
@@ -79,30 +92,12 @@ export function ReviewForm() {
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="rating"
-          className="mb-1.5 block text-sm font-medium text-ink-700"
-        >
-          التقييم (1–5)
-        </label>
-        <div className="flex items-center gap-3 rounded-xl border border-sand-200 bg-white px-4 py-2.5">
-          <select
-            id="rating"
-            name="rating"
-            defaultValue="5"
-            required
-            className="w-20 rounded-lg border border-sand-200 px-2 py-1.5 text-ink-900 focus:border-laguna focus:outline-none"
-          >
-            {[5, 4, 3, 2, 1].map((n) => (
-              <option key={n} value={n}>
-                {n} {n === 5 ? "نجوم" : "نجمة"}
-              </option>
-            ))}
-          </select>
-          <span className="text-sm text-ink-500">من أصل 5</span>
-        </div>
-      </div>
+      <fieldset>
+        <legend className="mb-1.5 block text-sm font-medium text-ink-700">
+          تقييمك بالنجوم (1–5)
+        </legend>
+        <RatingPicker name="rating" />
+      </fieldset>
 
       <div>
         <label

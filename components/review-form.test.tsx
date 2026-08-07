@@ -32,6 +32,7 @@ describe("ReviewForm", () => {
     expect(payload.reviewerName).toBe("سارة");
     expect(payload.rating).toBe(5);
     expect(payload.comment).toBe("قهوة ممتازة وعرض جميل");
+    expect(payload.company).toBe("");
 
     await screen.findByText("مرسي عالمشاركة! تقييمك اتحفظ.");
 
@@ -55,13 +56,13 @@ describe("ReviewForm", () => {
     vi.unstubAllGlobals();
   });
 
-  it("keeps the rating select with options 1 through 5", () => {
+  it("keeps the rating picker with stars 1 through 5", () => {
     render(<ReviewForm />);
-    const rating = screen.getByLabelText("التقييم (1–5)");
-    const options = Array.from(
-      rating.querySelectorAll("option"),
-      (opt) => (opt as HTMLOptionElement).value,
+    const radios = screen.getAllByRole("radio");
+    expect(radios).toHaveLength(5);
+    expect(screen.getByRole("radio", { name: "5 من 5" })).toHaveAttribute(
+      "aria-checked",
+      "true",
     );
-    expect(options).toEqual(["5", "4", "3", "2", "1"]);
   });
 });
