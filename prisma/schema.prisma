@@ -7,7 +7,7 @@ datasource db {
 }
 
 model Cafe {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   name        String
   description String?
   address     String?
@@ -17,8 +17,8 @@ model Cafe {
 }
 
 model Review {
-  id           String   @id @default(cuid())
-  cafeId       String
+  id           String   @id @default(uuid()) @db.Uuid
+  cafeId       String   @db.Uuid
   cafe         Cafe     @relation(fields: [cafeId], references: [id], onDelete: Cascade)
   reviewerName String
   rating       Int
