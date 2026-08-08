@@ -50,6 +50,6 @@ describe("ReviewsPage", () => {
 
     expect(screen.getByText("أضف تقييمك")).toBeInTheDocument();
     expect(screen.getByLabelText("اسمك")).toBeInTheDocument();
-    expect(screen.getByText("لسه مفيش تقيييمات.")).toBeInTheDocument();
+    expect(screen.getByText("لسه مفيش تقييمات.")).toBeInTheDocument();
   });
 });

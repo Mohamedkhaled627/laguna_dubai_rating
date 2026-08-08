@@ -81,7 +81,7 @@ describe("HomePage", () => {
     mockedPrisma.cafe.findFirst.mockResolvedValue(null);
     render(await HomePage());
     expect(
-      screen.getByText("مفيش بيانات لسه. استنى لحظة أو أضف كافيه من الداتاباز."),
+      screen.getByText("رأيك يهمنا."),
     ).toBeInTheDocument();
   });
 });

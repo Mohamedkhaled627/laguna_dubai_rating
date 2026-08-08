@@ -37,6 +37,106 @@ body {
   outline-offset: 2px;
 }
 
+/* ---------- Motion ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes ring-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes wave-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.anim-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.anim-ring {
+  animation: ring-pulse 6s ease-in-out infinite;
+}
+
+.anim-wave {
+  animation: wave-drift 14s linear infinite;
+}
+
+.stagger-1 { animation-delay: 0.08s; }
+.stagger-2 { animation-delay: 0.18s; }
+.stagger-3 { animation-delay: 0.28s; }
+.stagger-4 { animation-delay: 0.38s; }
+.stagger-5 { animation-delay: 0.48s; }
+
+.lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -20px rgba(10, 75, 82, 0.35);
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-laguna-deep),
+    var(--color-lagoon),
+    var(--color-laguna-deep)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -44,5 +144,12 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .anim-floaty,
+  .anim-ring,
+  .anim-wave,
+  .text-shimmer {
+    animation: none !important;
   }
 }
